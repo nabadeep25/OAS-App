@@ -1,7 +1,7 @@
 
 
 import React,{useState,useEffect} from 'react';
-import {Spinner,Icon} from 'native-base'
+import {Spinner,H1} from 'native-base'
 import {
  
   StatusBar,
@@ -17,7 +17,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import SignIn from './screens/SignIn'
 import AdminPanel from './screens/AdminPanel';
 import Application from './screens/Application';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 const Stack=createStackNavigator();
@@ -26,28 +26,35 @@ const Drawer=createDrawerNavigator();
 
 const App = () => {
   function CustomDrawerContent(props) {
+   
     return (
-      <DrawerContentScrollView {...props}>
-        <DrawerItem label="ONLINE ADMISSION SYSTEM" inactiveBackgroundColor='#22CB5C'/>
+       <View style={{flex:1}}>
+        <DrawerContentScrollView {...props}>
+          <View style={{ flex:1}}>
+            <Text>Online Admission System</Text>
+          </View>
        
         <DrawerItemList {...props} />
-        <DrawerItem label="Logout" onPress={() => alert('Are you sure ?')} inactiveBackgroundColor='#EB4D4B' inactiveTintColor='white'
-        
-        />
+       
       </DrawerContentScrollView>
+      <View style={{}}>
+       <DrawerItem icon={()=><Icon name='logout' />} label='Signout'  onPress={() => alert('Are you sure ?')} inactiveTintColor='#EB4D4B'/>
+      </View> 
+      
+      </View>
     );
   }
 
 const [data, setData] = useState('')
 const [isloading,setIsloading]=useState(false)
 
-  const getdata=async ()=>{
+  const getdata= async()=>{
     setIsloading(true)
-    const user=await AsyncStorage.getItem('@user')
+    const user= await AsyncStorage.getItem('@user')
   const userinfo=await JSON.parse(user);
   setData(userinfo)
   setIsloading(false)
- console.log("data",data)
+ console.log("App jsdata",data)
 }
 
 useEffect(() => {

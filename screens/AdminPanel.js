@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {StyleSheet,Image,KeyboardAvoidingView, Platform, ScrollView} from 'react-native'
+import {StyleSheet,Image,KeyboardAvoidingView, Platform, ScrollView,View} from 'react-native'
 import {Text,Container,Form,Input,Item,Button,H1,Spinner} from 'native-base'
 import Axios from 'axios'
 import {API} from '../Const'
@@ -10,18 +10,33 @@ import AsyncStorage from '@react-native-community/async-storage'
 const AdminPanel= ()=>{
    
     const [data,setData]=useState('')
+    const [isloading,setIsloading]=useState(false)
 
     const getdata=async ()=>{
+        setIsloading(true)
         const user=await AsyncStorage.getItem('@user')
    const userinfo=await JSON.parse(user);
    setData(userinfo)
+   setIsloading(false)
    
   }
     
   useEffect(() => {
     getdata();
+    
   }, [])
    
+
+  if(isloading){
+    return(
+      <View style={{flex:1,alignContent:'center'
+      }}>
+         <Spinner />
+         <Text style={{textAlign:'center'}}>Wait a moment...</Text>
+      </View>
+       
+    )
+  }
     return(
         
         <Container style={styles.container}>
