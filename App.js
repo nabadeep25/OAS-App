@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import SignIn from './screens/SignIn'
 import AdminPanel from './screens/AdminPanel';
 import Application from './screens/Application';
+import ApplicationView from './screens/ApplicationView'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
@@ -82,14 +83,17 @@ if(isloading){
       </Stack.Navigator>
       )
       :(
-        <Drawer.Navigator drawerContentOptions={{ title:"OAS", }}
+        <Drawer.Navigator drawerContentOptions={{ title:"OAS", } }
         drawerContent={props => <CustomDrawerContent {...props} />}
        >
-          <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} 
-          initialParams={{userdata:data}} />
-          <Drawer.Screen name='Application'component={Application} options={{
+           <Drawer.Screen name='Application'component={Application} options={{
             title:"Application"
           }} initialParams={{userdata:data}} />
+          <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} 
+          initialParams={{userdata:data}} />
+          <Drawer.Screen name='Viewer'component={ApplicationView} options={{title:'Application viewer', headerTitleAlign:'center'}} 
+           />
+          
         </Drawer.Navigator>
         
       ) }
