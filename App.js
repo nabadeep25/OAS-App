@@ -85,10 +85,11 @@ if(isloading){
         <Drawer.Navigator drawerContentOptions={{ title:"OAS", }}
         drawerContent={props => <CustomDrawerContent {...props} />}
        >
-          <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} />
+          <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} 
+          initialParams={{userdata:data}} />
           <Drawer.Screen name='Application'component={Application} options={{
             title:"Application"
-          }} />
+          }} initialParams={{userdata:data}} />
         </Drawer.Navigator>
         
       ) }
