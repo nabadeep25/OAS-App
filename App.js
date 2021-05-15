@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {NavigationContainer,} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator ,DrawerContentScrollView,DrawerItem,DrawerItemList} from '@react-navigation/drawer'
 
 import AsyncStorage from '@react-native-community/async-storage'
@@ -19,10 +20,12 @@ import AdminPanel from './screens/AdminPanel';
 import Application from './screens/Application';
 import ApplicationView from './screens/ApplicationView'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import ApplicationRegular from './screens/AppicationRegular';
 
 
 const Stack=createStackNavigator();
 const Drawer=createDrawerNavigator();
+const Tab=createBottomTabNavigator();
 
 
 const App = () => {
@@ -88,6 +91,9 @@ if(isloading){
        >
            <Drawer.Screen name='Application'component={Application} options={{
             title:"Application"
+          }} initialParams={{userdata:data}} />
+           <Drawer.Screen name='ApplicationRegular'component={ApplicationRegular} options={{
+            title:"Application (Regular)"
           }} initialParams={{userdata:data}} />
           <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} 
           initialParams={{userdata:data}} />

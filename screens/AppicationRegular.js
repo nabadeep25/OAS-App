@@ -4,8 +4,8 @@ import {View,ScrollView,Spinner} from 'react-native'
 import { API } from '../Const';
 import {Text,List,ListItem,Right,Body,Left,Button} from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import Snackbar from 'react-native-snackbar';
-export default function Application({navigation,route}) {
+
+export default function ApplicationRegular({navigation,route}) {
 
   
     const data=route.params.userdata;
@@ -15,7 +15,7 @@ export default function Application({navigation,route}) {
 
 const getallapplication=async()=>{
   setIsloading(true)
-  axios.get(`${API}/new/applications/${data.user._id}`,
+  axios.get(`${API}/applications/${data.user._id}`,
  { headers:{
       Authorization:`Bearer ${data.token}`
   }})
@@ -32,26 +32,7 @@ useEffect(() => {
   
 }, [])
  
-const deleteApplication=(appId)=>{
-  axios.delete(`${API}/new/delete/${appId}/${data.user._id}`,
-        { headers:{
-                Authorization:`Bearer ${data.token}`
-          }})
-  .then(res=>{
-    Snackbar.show({
-      text:'Deleted Sucessfully',
-      backgroundColor:'green',
-      l
-    })
-    getallapplication(); })
-   .catch(err=>{
-    Snackbar.show({
-      text:'Deletion Failed',
-      backgroundColor:'red',
-      l
-    })
-   })
-}
+ 
 if(isloading){
   return(
     <View style={{flex:1,alignContent:'center'
@@ -68,7 +49,7 @@ if(isloading){
      <ScrollView style={{flex:1}}>
       <List>
         <ListItem>
-          <Body><Text>Applications</Text></Body>
+          <Body><Text> Regular Applications</Text></Body>
         </ListItem>
         {Applications.map((application,index)=>{
           //console.log(application)
@@ -76,12 +57,11 @@ if(isloading){
             <ListItem key={index} thumbnail>
                <Left><Text>{index+1}</Text></Left>
               <Body><Text>{application.name}</Text></Body>
-              <Right style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
+              <Right><Right style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
               <Icon name='book-open' size={32} color='blue' style={{}} onPress={()=>{navigation.navigate("Viewer",{userdata:data,appID:application._id})}}/>
-               <Icon name='delete-circle-outline' size={32} color='red' style={{paddingLeft:20,alignSelf:'flex-end'}} 
-               onPress={()=>{deleteApplication(application._id)}} />
+               <Icon name='delete-circle-outline' size={32} color='red' style={{paddingLeft:20,alignSelf:'flex-end'}} />
                
-              </Right>
+              </Right></Right>
             </ListItem>
           )
         })}
