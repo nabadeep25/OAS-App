@@ -9,7 +9,7 @@ import {
  Text,
   View,
 } from 'react-native';
-import {NavigationContainer,} from '@react-navigation/native'
+import {NavigationContainer, } from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator ,DrawerContentScrollView,DrawerItem,DrawerItemList} from '@react-navigation/drawer'
@@ -21,7 +21,8 @@ import Application from './screens/Application';
 import ApplicationView from './screens/ApplicationView'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ApplicationRegular from './screens/AppicationRegular';
-
+import ApplicationViewerRegular from './screens/ApplicationViewerRegular';
+import Users from './screens/Users'
 
 const Stack=createStackNavigator();
 const Drawer=createDrawerNavigator();
@@ -86,11 +87,14 @@ if(isloading){
       </Stack.Navigator>
       )
       :(
-        <Drawer.Navigator drawerContentOptions={{ title:"OAS", } }
-        drawerContent={props => <CustomDrawerContent {...props} />}
+        <Drawer.Navigator initialRouteName="AdminPanel" drawerContentOptions={{ title:"OAS", } }
+        drawerContent={props => <CustomDrawerContent {...props} />  }
        >
            <Drawer.Screen name='Application'component={Application} options={{
             title:"Application"
+          }} initialParams={{userdata:data}} />
+           <Drawer.Screen name='Users'component={Users} options={{
+            title:"Users"
           }} initialParams={{userdata:data}} />
            <Drawer.Screen name='ApplicationRegular'component={ApplicationRegular} options={{
             title:"Application (Regular)"
@@ -98,6 +102,8 @@ if(isloading){
           <Drawer.Screen name='AdminPanel'component={AdminPanel} options={{title:'Admin Panel', headerTitleAlign:'center'}} 
           initialParams={{userdata:data}} />
           <Drawer.Screen name='Viewer'component={ApplicationView} options={{title:'Application viewer', headerTitleAlign:'center'}} 
+           />
+          <Drawer.Screen name='RViewer'component={ApplicationViewerRegular} options={{title:'Application viewer', headerTitleAlign:'center'}} 
            />
           
         </Drawer.Navigator>

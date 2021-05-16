@@ -9,7 +9,7 @@ export default function Application({navigation,route}) {
 
   
     const data=route.params.userdata;
-    
+    const [render,setRender]=useState(0)
   const [isloading,setIsloading]=useState(false)
   const [Applications, setApplications] = useState([])
 
@@ -30,7 +30,7 @@ useEffect(() => {
   getallapplication()
   
   
-}, [])
+}, [render])
  
 const deleteApplication=(appId)=>{
   axios.delete(`${API}/new/delete/${appId}/${data.user._id}`,
@@ -38,12 +38,13 @@ const deleteApplication=(appId)=>{
                 Authorization:`Bearer ${data.token}`
           }})
   .then(res=>{
+    setRender(render+1);
     Snackbar.show({
       text:'Deleted Sucessfully',
       backgroundColor:'green',
       l
-    })
-    getallapplication(); })
+    })})
+   
    .catch(err=>{
     Snackbar.show({
       text:'Deletion Failed',
@@ -51,7 +52,9 @@ const deleteApplication=(appId)=>{
       l
     })
    })
-}
+  
+  }
+
 if(isloading){
   return(
     <View style={{flex:1,alignContent:'center'

@@ -1,1 +1,0 @@
-export  const API='https://eadmission.herokuapp.com/api'

@@ -3,7 +3,7 @@ import {StyleSheet,Image,KeyboardAvoidingView, Platform, ScrollView,View} from '
 import {Text,Container,Form,Input,Item,Button,H1,Spinner,Card,CardItem,Badge} from 'native-base'
 import axios from 'axios'
 import {API} from '../Const'
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Snackbar from 'react-native-snackbar'
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -54,6 +54,9 @@ const AdminPanel= ({route})=>{
                <CardItem header style={styles.carditem}>
                   <H1 style={styles.text}>User</H1>
                </CardItem>
+               <CardItem style={styles.carditem}>
+               <Icon name='account' size={32}/>
+               </CardItem>
                <CardItem style={styles.carditem} >
                 <Badge ><Text >{student}</Text></Badge>
                </CardItem>
@@ -61,7 +64,12 @@ const AdminPanel= ({route})=>{
 
              <Card style={styles.card}>
                <CardItem header style={styles.carditem}>
+                
                   <H1 style={styles.text}>Admin</H1>
+               </CardItem>
+              
+               <CardItem style={styles.carditem}>
+               <Icon name='account-star' size={32}/>
                </CardItem>
                <CardItem style={styles.carditem} >
                 <Badge ><Text >{admin}</Text></Badge>
@@ -72,6 +80,9 @@ const AdminPanel= ({route})=>{
                <CardItem header style={styles.carditem}>
                   <H1 style={styles.text}>New Application</H1>
                </CardItem>
+               <CardItem style={styles.carditem}>
+               <Icon name='book-open' size={32}/>
+               </CardItem>
                <CardItem style={styles.carditem} >
                 <Badge ><Text >{application}</Text></Badge>
                </CardItem>
@@ -80,6 +91,9 @@ const AdminPanel= ({route})=>{
              <Card style={styles.card}>
                <CardItem header style={styles.carditem}>
                   <H1 style={styles.text}>Old Application</H1>
+               </CardItem>
+               <CardItem style={styles.carditem}>
+               <Icon name='book' size={32}/>
                </CardItem>
                <CardItem style={styles.carditem} >
                 <Badge ><Text >{oapplication}</Text></Badge>
