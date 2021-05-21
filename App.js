@@ -33,13 +33,20 @@ const App = () => {
   function CustomDrawerContent(props) {
    
     return (
-       <View style={{flex:1}}>
+       <View style={{flex:1 }}>
         <DrawerContentScrollView {...props}>
-          <View style={{ flex:1}}>
+          <View style={{ flex:1,margin:20}}>
             <Text>Online Admission System</Text>
           </View>
-       
-        <DrawerItemList {...props} />
+         <View style={{backgroundColor:'#4DAF7C'}}>
+           <DrawerItem icon={()=><Icon name='account-multiple' />} label="Users" onPress={()=>{props.navigation.navigate('Users')}} />
+           <DrawerItem icon={()=><Icon name='security' />} label="Admin Panel" onPress={()=>{props.navigation.navigate('AdminPanel')}} />
+           <DrawerItem icon={()=><Icon name='book-open' />} label="New Application" onPress={()=>{props.navigation.navigate('Application')}} />
+           <DrawerItem icon={()=><Icon name='book' />} label="Regular Application" onPress={()=>{props.navigation.navigate('ApplicationRegular')}} />
+
+           
+         </View>
+        {/* <DrawerItemList {...props} /> */}
        
       </DrawerContentScrollView>
       <View style={{}}>

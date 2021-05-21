@@ -131,13 +131,13 @@ card:{
   width:'45%',
   alignContent:'center',
   justifyContent:'center',
-  backgroundColor:'#383CC1',
+  backgroundColor:'#26C281',
  
 },
 carditem:{
 
 justifyContent:'center',
-backgroundColor:'#383CC1'
+backgroundColor:'#26C281'
 },
 text:{
   textAlign:'center',
