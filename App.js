@@ -1,7 +1,7 @@
 
 
 import React,{useState,useEffect} from 'react';
-import {Spinner,H1} from 'native-base'
+import {Spinner} from 'native-base'
 import {
  
   StatusBar,
@@ -36,7 +36,14 @@ const App = () => {
        <View style={{flex:1 }}>
         <DrawerContentScrollView {...props}>
           <View style={{ flex:1,margin:20}}>
-            <Text>Online Admission System</Text>
+            <Text style={{justifyContent:'center',fontSize:18,fontWeight:'bold',fontFamily:'open sans'}}>Online Admission System</Text>
+
+            <View style={{flexDirection:'row',flexWrap:'wrap',padding:10,alignItems:'center'}}>
+              <Icon name="account-circle" size={32} color='blue'/>
+               <Text style={{paddingLeft:10}}>{data.user?.name}</Text>
+               
+            </View>
+            
           </View>
          <View style={{backgroundColor:'#4DAF7C'}}>
            <DrawerItem icon={()=><Icon name='account-multiple' />} label="Users" onPress={()=>{props.navigation.navigate('Users')}} />
@@ -50,7 +57,7 @@ const App = () => {
        
       </DrawerContentScrollView>
       <View style={{}}>
-       <DrawerItem icon={()=><Icon name='logout' />} label='Signout'  onPress={() => alert('Are you sure ?')} inactiveTintColor='#EB4D4B'/>
+       <DrawerItem icon={()=><Icon name='logout' />} label='Signout'  onPress={() => Signout()} inactiveTintColor='#EB4D4B'/>
       </View> 
       
       </View>
@@ -67,6 +74,15 @@ const [isloading,setIsloading]=useState(false)
   setData(userinfo)
   setIsloading(false)
  console.log("App jsdata",data)
+}
+const Signout=async()=>{
+  try {
+    await AsyncStorage.removeItem('@user')
+    
+  } catch (error) {
+    console.log("signout error")
+  }
+  
 }
 
 useEffect(() => {
